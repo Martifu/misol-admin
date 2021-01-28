@@ -1,7 +1,9 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
+import { FirebaseApp } from '@angular/fire/firebase.app.module';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import * as firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../interfaces/user';
 
@@ -54,20 +56,19 @@ authStatusListener(){
 
 
    // Sign in with email/password
-  async SignIn(email, password) {
-    return await this.afAuth.signInWithEmailAndPassword(email, password)
+   SignIn(email, password) {
+    return  this.afAuth.setPersistence(firebase.default.auth.Auth.Persistence.SESSION).then(()=>{
+      return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        
         this.ngZone.run(() => {
-
           //window.location.replace('citas')
-           setTimeout(() => this.router.navigate(['../admin/'], { relativeTo: this.route }));
-
+           setTimeout(() => this.router.navigate(['../admin/citas'], { relativeTo: this.route }));
         });
-        this.SetUserData(result.user);
+        //this.SetUserData(result.user);
       }).catch((error) => {
         window.alert(error.message)
       })
+    })
   }
 
    // Returns true when user is looged in and email is verified
