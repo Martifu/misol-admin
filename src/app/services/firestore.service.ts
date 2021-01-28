@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AngularFireAuth } from "@angular/fire/auth";
 
 
 
@@ -15,8 +14,12 @@ export class FirestoreService {
 
 
   async getUsers(){
-    const users = this.afs.firestore.collection('/Usuarios').get();
     
+    const users = this.afs.firestore.collection('/Usuarios').get();
+    (await users).forEach((document)=>{
+      console.log(document.data());
+      
+    })
     
   }
 }

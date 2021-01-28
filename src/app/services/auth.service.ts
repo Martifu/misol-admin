@@ -2,6 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -16,6 +17,7 @@ export class AuthService {
     public router: Router,  
     public ngZone: NgZone 
   ) {
+    this.authStatusListener()
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
@@ -31,16 +33,35 @@ export class AuthService {
 
    }
 
+   currentUser = '';
+  private authStatusSub = new BehaviorSubject(this.currentUser);
+  currentAuthStatus = this.authStatusSub.asObservable();
+
+
+authStatusListener(){
+  this.afAuth.onAuthStateChanged((credential)=>{
+    if(credential){
+      console.log(credential);
+      this.authStatusSub.next(JSON.stringify(credential));
+      console.log('User is logged in');
+    }
+    else{
+      this.authStatusSub.next(null);
+      console.log('User is logged out');
+    }
+  })
+}
+
 
    // Sign in with email/password
   async SignIn(email, password) {
     return await this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        console.log(result);
         
         this.ngZone.run(() => {
-          window.location.replace('citas')
-          // setTimeout(() => this.router.navigate(['items'], { relativeTo: this.route }));
+
+          //window.location.replace('citas')
+           setTimeout(() => this.router.navigate(['../admin/'], { relativeTo: this.route }));
 
         });
         this.SetUserData(result.user);
@@ -85,6 +106,11 @@ export class AuthService {
     })
   }
 
+  getAuthStatus(){
+    console.log(this.afAuth.currentUser);
+    
+  }
+
   // Sign out 
   SignOut() {
     return this.afAuth.signOut().then(() => {
@@ -92,5 +118,4 @@ export class AuthService {
       this.router.navigate(['login']);
     })
   }
-  
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -8,14 +9,17 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   ]
 })
 export class CitasComponent implements OnInit {
-
-  constructor(public firestoreService: FirestoreService) { }
+  isAuthenticated;
+  constructor(public firestoreService: FirestoreService,private authservice: AuthService ) { }
 
   ngOnInit(): void {
+    this.authservice.getAuthStatus();
+    this.authservice.currentAuthStatus.subscribe(authStatus => this.isAuthenticated = authStatus)
+    console.log(this.isAuthenticated);
     
-    var users = this.firestoreService.getUsers()
-    
-    
+    this.firestoreService.getUsers()
   }
+
+  
 
 }
