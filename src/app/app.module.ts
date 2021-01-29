@@ -13,14 +13,11 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthService } from './services/auth.service';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { CitasComponent } from './pages/citas/citas.component';
-import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NopagefoundComponent,
-    CitasComponent
   ],
   imports: [
     AngularFireModule.initializeApp(

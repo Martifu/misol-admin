@@ -62,7 +62,7 @@ authStatusListener(){
       .then((result) => {
         this.ngZone.run(() => {
           //window.location.replace('citas')
-           setTimeout(() => this.router.navigate(['../admin/citas'], { relativeTo: this.route }));
+           setTimeout(() => this.router.navigate(['../dashboard/'], { relativeTo: this.route }));
         });
         //this.SetUserData(result.user);
       }).catch((error) => {

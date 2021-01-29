@@ -16,7 +16,7 @@
 
                             <ul aria-expanded="false" class="collapse">
                                 <li *ngFor="let subitem of item.submenu">
-                                    <a  [routerLink]="subitem.url" routerLinkActive="router-link-active"><i class="mdi mdi-book-minus"></i> {{subitem.titulo}} </a></li>
+                                    <a  [routerLink]="subitem.url" ><i class="mdi {{subitem.icon}}"></i> {{subitem.titulo}} </a></li>
                             </ul>
                         </li>
                         

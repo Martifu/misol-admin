@@ -10,10 +10,11 @@ export class SidebarService {
       titulo:'Principal',
       icono:'mdi mdi-gauge',
       submenu:[
-        {titulo:'Citas',url:'citas'},
-        {titulo:'Pendientes',url:'pendientes'},
-        {titulo:'Usuarios',url:'usuarios'},
-        {titulo:'Asesores',url:'asesores'},
+        {titulo:'Dashboard',url:'', icon: 'mdi-view-dashboard'},
+        {titulo:'Citas',url:'citas', icon: 'mdi-book'},
+        {titulo:'Pendientes',url:'pendientes', icon:'mdi-clipboard-text'},
+        {titulo:'Usuarios',url:'usuarios', icon:'mdi-account-circle'},
+        {titulo:'Asesores',url:'asesores', icon: 'mdi-account-settings-variant'},
       ]
     }
   ]

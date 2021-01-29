@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument, DocumentChangeAction } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 
 
@@ -8,18 +9,19 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 })
 export class FirestoreService {
 
+   usuarios: any[] = [];
+
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
   ) { }
+  
 
 
-  async getUsers(){
-    
-    const users = this.afs.firestore.collection('/Usuarios').get();
-    (await users).forEach((document)=>{
-      console.log(document.data());
-      
-    })
-    
+   getUsers(){
+      return this.afs.collection('usuarios').stateChanges();
+  }
+
+  getUnidadesDeUsuario(id: string){
+    return this.afs.collection('usuarios').doc(id).collection('unidades').stateChanges()
   }
 }
