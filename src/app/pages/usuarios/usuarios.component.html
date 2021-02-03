@@ -1,88 +1,102 @@
-  <!-- Start Page Content -->
-<!-- ============================================================== -->
-<div class="row">
+<div class="row mb-1 text-center">  
+      
+    <div class="col-6">
+        <label for="">Busqueda por nombre:</label>
+
+        <input type="text"
+         class="form-control" 
+         placeholder="Ingrese un nombre"
+         (keyup)="buscar(txtBuscar.value)"
+         #txtBuscar>
+    </div>
+
+    <div class="col-6">
+        <div class="form-group">
+            <label for="">Busqueda por status:</label>
+
+            <select class="form-control" #status placeholder="a" (change)="buscarEstatus($event.target.value)">
+            <option disabled selected>Selecciona una opción</option>
+              <option >Teléfono equivocado</option>
+              <option >Pendiente</option>
+              <option >Se vendió</option>
+              <option >No vive en la ciudad</option>
+              <option >Perdida total</option>
+              <option >Tel fuera de servicio</option>
+              <option >No le interesa</option>
+              <option >Marcar despues</option>
+            </select>
+          </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center" >
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+          </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="!cargando">
     <!-- column -->
     <div class="col-12">
         <div class="card">
+
+            
             <div class="card-body">
-                <h4 class="card-title">Usuarios</h4>
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Usuarios ({{usuarios.length}})</h4>
+                        <h6 class="card-subitle">Usuarios registrados</h6>
+                    </div>
+
+                    <div class="col">
+                        <div class="text-right">
+                            <button [routerLink]="'nuevo'" 
+                            routerLinkActive="active" 
+                            [routerLinkActiveOptions]="{ exact: true}" class="btn btn-success">
+                                <i class="mdi mdi-account-plus"></i>
+                                Agregar usuario
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Celular</th>
+                                <th>Telefono</th>
                                 <th>Correo</th>
+                                <th>Estado</th>
                                 <th class="text-nowrap">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
+                           
                             <tr *ngFor="let item of usuarios">
-                                <td>{{item.nombre}}</td>
-                                <td>{{item.celular}}</td>
-                                <td>{{item.correo}}</td>
+                                <td>  {{item.nombre}} </td>
+                                <td>  {{item.celular}} </td>
+                                <td>  {{item.correo}} </td>
+                                <td>  {{item.estado}} </td>
+                           
                                 <td class="text-nowrap">
-                                    <a (click)="getUnidades(item.id)" alt="default" data-toggle="modal" data-target="#responsive-modal"   data-original-title="Unidades"> <i class="mdi mdi-car text-inverse m-r-10"></i> </a>
-                                    <a  data-toggle="tooltip" data-original-title="Close"> <i class="mdi mdi-account-edit text-primary"></i> </a>
+                                    <a (click)="getUnidades(item.id)" data-toggle="tooltip" data-original-title="Edit"> <i class="mdi mdi-car text-inverse m-r-10"></i></a>
+                                    &nbsp;
+                                    <a  data-toggle="tooltip" data-original-title="Close"> <i class="mdi mdi-pencil text-primary"></i></a>
+                                    &nbsp;
+                                    <a  data-toggle="tooltip" data-original-title="Close"> <i class="mdi mdi-close-box text-danger"></i></a>
                                 </td>
-                                
                             </tr>
-                            
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>
-    
-    <div id="responsive-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Unidades del usuario</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Unidad</th>
-                                    <th>Kilometraje</th>
-                                    <th>N° Serie</th>
-                                    <th>Año</th>
-                                    <th>Ultima visita</th>
-                                    <th class="text-nowrap">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of unidades">
-                                    <td>{{item.unidad}}</td>
-                                    <td>{{item.km}}</td>
-                                    <td>{{item.noserie}}</td>
-                                    <td>{{item.ano}}</td>
-                                    <td>{{item.ultimaVisita.toDate() | date:'dd/MM/yyyy h:mm:ss a'}}</td>
-                                    <td class="text-nowrap">
-                                        <a  alt="default" data-toggle="modal" data-target="#"   data-original-title="Borrar">Eliminar <i class="mdi mdi-close text-danger"></i> </a>
-                                    </td>
-                                    
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger waves-effect waves-light">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    
+    <!-- column -->
 </div>
-<!-- ============================================================== -->
-<!-- End PAge Content -->

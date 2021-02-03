@@ -6,6 +6,7 @@ import { AuthGuard } from "../guards/auth.guard";
 import { UsuariosComponent } from "./usuarios/usuarios.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { PendientesComponent } from "./pendientes/pendientes.component";
+import { NuevoComponent } from "./usuarios/nuevo/nuevo.component";
 
 const routes: Routes = [
     
@@ -20,6 +21,9 @@ const routes: Routes = [
     },
     {
       path:'usuarios', component:UsuariosComponent, canActivate: [AuthGuard],
+
+    },{
+      path:'usuarios/nuevo', component:NuevoComponent, canActivate: [AuthGuard],
 
     },
     {

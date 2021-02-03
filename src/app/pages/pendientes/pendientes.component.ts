@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-pendientes',
   templateUrl: './pendientes.component.html',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PendientesComponent implements OnInit {
 
-  constructor() { }
+  public cargando: boolean = true;
+  
+  constructor() {
+   }
+ 
 
   ngOnInit(): void {
+    this.cargando = true;
+
   }
 
 }

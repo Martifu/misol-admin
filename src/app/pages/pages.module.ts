@@ -13,6 +13,7 @@ import { PagesComponent } from './pages.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { PendientesComponent } from './pendientes/pendientes.component';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { NuevoComponent } from './usuarios/nuevo/nuevo.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
     PagesComponent,
     UsuariosComponent,
     PendientesComponent,
-    NopagefoundComponent, 
+    NopagefoundComponent,
+    NuevoComponent, 
   ],
   exports: [
     DashboardComponent,
