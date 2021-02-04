@@ -3,19 +3,18 @@
         <button (click)="volver()" class="btn btn-dark btn-sm"><i class="mdi mdi-arrow-left-bold"></i></button>
     </div>
 </div>
-
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Agregar un usuario nuevo</h4>
+                <h4 class="card-title">Actualizar a {{usuario}} </h4>
                 <h6 class="card-subtitle">Llena los datos correspondientes del usuario.</h6>
                 <form class="form-horizontal p-t-20" [formGroup]="usuarioForm" (submit)="guardarUsuario()">
                     <div class="row">
                         
-                       <div class="col-6">
+                       <div class="col-12">
                         <h4>Datos del usuario</h4>
-                        <br>
+                        <br> 
                         <div class="form-group row">
                             <label for="exampleInputuname3" class="col-sm-3 control-label">Nombre</label>
                             <div class="col-sm-9">
@@ -65,61 +64,14 @@
                         </div>
                         
                     </div> 
-                    <div class="col-6">
-                        <h4 >Datos de la unidad</h4>
-                        <br>
-                        <div class="form-group row">
-                            <label for="exampleInputuname3" class="col-sm-3 control-label">Marca</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="ti-car"></i></div>
-                                    <input type="text" class="form-control" id="exampleInputuname3" placeholder=""
-                                    formControlName="marca"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="exampleInputuname3" class="col-sm-3 control-label">Año</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="ti-cup"></i></div>
-                                    <input type="number" class="form-control" id="exampleInputuname3" placeholder=""
-                                    formControlName="ano"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="exampleInputuname3" class="col-sm-3 control-label">N° de serie</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="ti-info"></i></div>
-                                    <input type="text" class="form-control" id="exampleInputuname3" placeholder=""
-                                    formControlName="noserie"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="exampleInputEmail3" class="col-sm-3 control-label">Km</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="ti-bar-chart"></i></div>
-                                    <input type="number" class="form-control" id="exampleInputEmail3" placeholder=""
-                                    formControlName="km"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     </div>
                     
                    
                     
                     <div class="form-group row m-b-0">
                         <div class="offset-sm-3 col-sm-9">
-                            <button [disabled]="usuarioForm.invalid " type="submit" class="btn btn-success waves-effect waves-light">Registrar</button>
+                            <button [disabled]="usuarioForm.invalid " type="submit" class="btn btn-success waves-effect waves-light">Actualizar</button>
                         </div>
                     </div>
                 </form>

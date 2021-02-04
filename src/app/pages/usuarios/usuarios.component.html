@@ -84,11 +84,12 @@
                                 <td>  {{item.estado}} </td>
                            
                                 <td class="text-nowrap">
-                                    <a (click)="getUnidades(item.id)" data-toggle="tooltip" data-original-title="Edit"> <i class="mdi mdi-car text-inverse m-r-10"></i></a>
+                                    <a [routerLink]="['/dashboard','usuario','unidades', item.id ]"  data-toggle="tooltip" data-original-title="Edit"> <i class="mdi mdi-car text-inverse m-r-10"></i></a>
                                     &nbsp;
-                                    <a  data-toggle="tooltip" data-original-title="Close"> <i class="mdi mdi-pencil text-primary"></i></a>
+                                    <a   [routerLink]="['/dashboard','usuario', item.id ]" 
+                                      data-toggle="tooltip" data-original-title="Close"> <i class="mdi mdi-pencil text-primary"></i></a>
                                     &nbsp;
-                                    <a  data-toggle="tooltip" data-original-title="Close"> <i class="mdi mdi-close-box text-danger"></i></a>
+                                    <a (click)="borrarUsuario(item)" data-toggle="tooltip" data-original-title="Close"> <i class="mdi mdi-close-box text-danger"></i></a>
                                 </td>
                             </tr>
                         </tbody>

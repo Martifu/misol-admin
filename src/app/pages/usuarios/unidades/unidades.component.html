@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-2">
+        <button (click)="volver()" class="btn btn-dark btn-sm"><i class="mdi mdi-arrow-left-bold"></i></button>
+    </div>
+</div>
+
+<div class="row" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center" >
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+          </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="!cargando">
+    <!-- column -->
+    <div class="col-12">
+        <div class="card">
+
+            
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Unidades </h4>
+                        <h6 class="card-subitle">Unidades registradas del usuario</h6>
+                    </div>
+
+                    <div class="col">
+                        <div class="text-right">
+                            <button [routerLink]="['/dashboard','usuario','unidades','nueva', idUsuario ]"
+                            routerLinkActive="active" 
+                            [routerLinkActiveOptions]="{ exact: true}" class="btn btn-success">
+                                <i class="mdi mdi-car"></i>
+                                Agregar unidad
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Marca</th>
+                                <th>Año</th>
+                                <th>N° Serie</th>
+                                <th>Kilometraje</th>
+                                <th>Ultima visita</th>
+                                <th class="text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            <tr *ngFor="let item of unidades">
+                                <td>  {{item.marca}} </td>
+                                <td>  {{item.ano}} </td>
+                                <td>  {{item.noserie}} </td>
+                                <td>  {{item.km}} </td>
+                                <td>  {{item.ultimaVisita['seconds'] * 1000 | date:'medium'}} </td>
+                           
+                                <td class="text-nowrap">
+                                    
+                                    <a   [routerLink]="['/dashboard','unidad', item.id ]" 
+                                    [queryParams]="{id: item.id}"  data-toggle="tooltip" data-original-title="Close"> <i class="mdi mdi-pencil text-primary"></i></a>
+                                    &nbsp;
+                                    <a (click)="borrarUnidad(item)" data-toggle="tooltip" data-original-title="Close"> <i class="mdi mdi-close-box text-danger"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- column -->
+</div>

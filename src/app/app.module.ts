@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthService } from './services/auth.service';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { CitasComponent } from './pages/citas/citas.component';
 
 
 @NgModule({

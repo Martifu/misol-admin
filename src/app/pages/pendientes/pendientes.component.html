@@ -1,4 +1,5 @@
-<div class="row">
+<div class="row animated fadeIn fast"
+    *ngIf="cargando">
     <div class="col-12">
         <div class="alert alert-info text-center" >
             <h4 class="alert-heading">Cargando</h4>
@@ -8,7 +9,8 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row animated "
+*ngIf="!cargando">
     <!-- column -->
     <div class="col-12">
         <div class="card">
@@ -21,7 +23,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th class="w100">Celular</th>
-                                <th class="w100">Fecha</th>
+                                <th class="w100">Cita</th>
                                 <th>Unidad</th>
                                 <th class="w100">Tipo cita</th>
                                 <th>Estatus</th>
@@ -29,11 +31,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
-                            <tr>
-
-                            </tr>
-                            <tr>
+                            <tr *ngFor="let item of pendientes">
+                                <td> {{ item.cliente.nombre }} </td>
+                                <td> {{ item.cliente.celular }} </td>                                
+                                <td> {{ item.fechaVisita['seconds'] * 1000 | date:'medium' }} </td>
+                                <td> <button class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg" (click)="mostrarUnidad()"> {{ item.unidad.marca }} </button></td>
+                                <td> {{ item.tipoCita }} </td>
+                                <td> {{ item.tipoServicio }} </td>
                                 <td class="text-nowrap text-center">
                                     <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                     <a href="#" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger"></i> </a>
@@ -47,3 +51,41 @@
     </div>
     <!-- column -->
 </div>
+
+  <!-- Modal -->
+  <!-- sample modal content -->
+  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Unidad</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Año</th>
+                        <th>N°Serie</th>
+                        <th>Kilometraje</th>
+                        <th>Ultima visita<th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of pendientes">
+                            <td> {{ item.unidad.ano }} </td>
+                            <td> {{ item.unidad.noSerie }} </td>
+                            <td></td>
+                            <td> {{ item.unidad.ultimaVisita['seconds'] * 1000 | date:'medium'}} </td>
+                        </tr>
+                    <tbody>
+                    
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
