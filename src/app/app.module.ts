@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthService } from './services/auth.service';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -36,6 +37,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AppRoutingModule,
     PagesModule,
     AuthModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthService

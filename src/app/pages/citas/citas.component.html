@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-2">
+        <button (click)="volver()" class="btn btn-dark btn-sm"><i class="mdi mdi-arrow-left-bold"></i></button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                
+                <form class="form-horizontal p-t-20" [formGroup]="usuarioForm">
+                    <h4>Agendar una cita a {{usuario}} </h4>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input disabled type="text" 
+                                    class="form-control" 
+                                    id="exampleInputuname3" 
+                                    placeholder=""
+                                    formControlName="nombre"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Celular</label>
+                                    <input disabled type="number" class="form-control" id="exampleInputuname3" placeholder="" 
+                                    formControlName="celular"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Telefono</label>
+                                    <input disabled type="number" class="form-control" id="exampleInputuname3" placeholder=""
+                                    formControlName="telefono"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Correo</label>
+                                    <input disabled type="email" class="form-control" id="exampleInputEmail3" placeholder=""
+                                    formControlName="correo"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                </form>
+                
+                <form class="form-horizontal p-t-5" [formGroup]="unidadForm">
+                    
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Datos de la unidad:</label>
+                                <select #mySelect (change)='onChangeUnidad(mySelect.value)' class="form-control text-rigth" id="exampleFormControlSelect1">
+                                    <option  *ngFor="let item of unidades;let indexOfelement=index;" [value]="indexOfelement"> {{item.marca}} </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Año</label>
+                                <input disabled type="text" class="form-control" id="exampleInputuname3" placeholder=""
+                                formControlName="ano"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>N° de serie</label>
+                                <input disabled type="text" class="form-control" id="exampleInputuname3" placeholder=""
+                                formControlName="noserie"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Kilometraje</label>
+                                <input disabled type="text" class="form-control" id="exampleInputEmail3" placeholder=""
+                                formControlName="km"
+                                >
+                            </div>
+                        </div>
+
+
+                    </div>
+                    
+                </form>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+  

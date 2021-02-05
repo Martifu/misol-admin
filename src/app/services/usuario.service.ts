@@ -35,6 +35,10 @@ export class UsuarioService {
   guardarUnidad(idUsuario:string, unidad:any){
     return this.usuariosCollection.doc(idUsuario).collection('unidades').add(unidad);
   }
+
+  actualizarUnidad(idUduario:string,idUnidad:Unidad,unidad:any){
+    return this.usuariosCollection.doc(idUduario).collection('unidades').doc(idUnidad.id).update(unidad)
+  }
   borrarUnidad(idUsuario:string, idUnidad:string){
     return this.usuariosCollection.doc(idUsuario).collection('unidades').doc(idUnidad).delete();
   }

@@ -14,9 +14,45 @@
     <!-- column -->
     <div class="col-12">
         <div class="card">
-            <div class="card-body">
-                <h2 class="card-title">Usuarios</h2>
-                <h6 class="card-subtitle"></h6>
+            <div class="card-body">  
+                <form class="form-horizontal p-t-20" [formGroup]="filtrosForm">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group"  filtrosForm="filtroTipoCita">
+                                <label for="exampleFormControlSelect1">Filtro tipo de cita</label>
+                                <select class="form-control" id="filtroTipoCita">
+                                    <option>1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Filtrar por dia</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Filtrar por mes</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Filtrar por año</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -36,7 +72,7 @@
                                 <td> {{ item.cliente.nombre }} </td>
                                 <td> {{ item.cliente.celular }} </td>                                
                                 <td> {{ item.fechaVisita['seconds'] * 1000 | date:'medium' }} </td>
-                                <td> <button class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg" (click)="mostrarUnidad()"> {{ item.unidad.marca }} </button></td>
+                                <td> <button class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg"> {{ item.unidad.marca }} </button></td>
                                 <td> {{ item.tipoCita }} </td>
                                 <td> {{ item.tipoServicio }} </td>
 
@@ -78,7 +114,7 @@
                         <tr *ngFor="let item of pendientes">
                             <td> {{ item.unidad.ano }} </td>
                             <td> {{ item.unidad.noSerie }} </td>
-                            <td></td>
+                            <td> {{ item.unidad.km }} </td>
                             <td> {{ item.unidad.ultimaVisita['seconds'] * 1000 | date:'medium'}} </td>
                         </tr>
                     <tbody>

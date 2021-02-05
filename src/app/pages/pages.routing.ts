@@ -9,6 +9,7 @@ import { NuevoComponent } from "./usuarios/nuevo/nuevo.component";
 import { ActualizarComponent } from "./usuarios/actualizar/actualizar.component";
 import { UnidadesComponent } from "./usuarios/unidades/unidades.component";
 import { NuevaComponent } from "./usuarios/unidades/nueva/nueva.component";
+import { CitasComponent } from "./citas/citas.component";
 
 const routes: Routes = [
     
@@ -29,6 +30,8 @@ const routes: Routes = [
       path:'usuario/unidades/:id', component:UnidadesComponent, canActivate: [AuthGuard],
     },{
       path:'usuario/unidades/nueva/:id', component:NuevaComponent, canActivate: [AuthGuard],
+    },{
+      path:'usuario/cita/:id', component:CitasComponent, canActivate: [AuthGuard],
     },
     {
       path:'pendientes', component:PendientesComponent, canActivate: [AuthGuard],

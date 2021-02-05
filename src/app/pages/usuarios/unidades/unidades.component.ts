@@ -4,6 +4,7 @@ import { Unidad } from 'src/app/models/unidad';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Location } from "@angular/common";
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-unidades',
@@ -16,7 +17,11 @@ export class UnidadesComponent implements OnInit {
   unidades: Unidad[] = [];
   cargando: boolean = true;
   idUsuario:string;
-  constructor(public usuarioService: UsuarioService, public activatedRoute: ActivatedRoute, public location:Location) {
+
+  unidadSelec: Unidad;
+  
+  public unidadForm: FormGroup;
+  constructor(public usuarioService: UsuarioService, public activatedRoute: ActivatedRoute, public location:Location, public fb: FormBuilder) {
    }
 
    
@@ -25,8 +30,17 @@ export class UnidadesComponent implements OnInit {
     this.activatedRoute.params
         .subscribe( ({ id }) =>{ this.cargarUnidades(id)
           , this.idUsuario = id;} );
-    
+
+          this.unidadForm = this.fb.group({
+            marca: ['',Validators.required],
+            km: [],
+            ano: [, Validators.required],
+            noserie: [''],
+          })
+     
   }
+
+ 
 
   cargarUnidades(id:string){
     this.cargando=true;
@@ -37,6 +51,12 @@ export class UnidadesComponent implements OnInit {
     })
   }
 
+
+  cargarUnidad(unidad:Unidad){
+    this.unidadSelec=unidad;
+    this.unidadForm.setValue({km:unidad.km, marca:unidad.marca, ano:unidad.ano,noserie:unidad.noserie})
+  }
+  
   borrarUnidad(unidad: any){
     Swal.fire({
       title: '¿Estás seguro de borrar la unidad ' +unidad.marca +'?',
@@ -60,6 +80,23 @@ export class UnidadesComponent implements OnInit {
     })
   }
 
+  actualizarUnidad(){
+    const unidad =  {
+      marca:this.unidadForm.value.marca,
+      km:this.unidadForm.value.km,
+      ano:this.unidadForm.value.ano,
+      noserie:this.unidadForm.value.noserie,
+    };
+    console.log(unidad);
+    
+     this.usuarioService.actualizarUnidad(this.idUsuario,this.unidadSelec, unidad).then((resp)=>{
+       Swal.fire({title: 'Unidad actualizada!', icon: 'success',showConfirmButton: false,timer: 2000})
+     }).catch((err)=>{
+      Swal.fire({title: err, icon: 'error',showConfirmButton: false,timer: 2000})
+     })
+  }
+
+  
 
 
  volver(){

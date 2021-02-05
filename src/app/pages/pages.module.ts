@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActualizarComponent } from './usuarios/actualizar/actualizar.component';
 import { UnidadesComponent } from './usuarios/unidades/unidades.component';
 import { NuevaComponent } from './usuarios/unidades/nueva/nueva.component';
+import { CitasComponent } from './citas/citas.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { NuevaComponent } from './usuarios/unidades/nueva/nueva.component';
     NuevoComponent,
     ActualizarComponent,
     UnidadesComponent,
-    NuevaComponent, 
+    NuevaComponent,
+    CitasComponent
   ],
   exports: [
     DashboardComponent,
@@ -44,7 +46,7 @@ import { NuevaComponent } from './usuarios/unidades/nueva/nueva.component';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule,
+    RouterModule, 
     FormsModule,
     ReactiveFormsModule
   ]
