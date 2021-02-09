@@ -5,6 +5,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Location } from "@angular/common";
 import Swal from 'sweetalert2';
 import { Unidad } from 'src/app/models/unidad';
+import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-citas',
@@ -20,8 +21,11 @@ export class CitasComponent implements OnInit {
 
   unidades: Unidad[]=[];
 
+  model: NgbDateStruct;
+  date: {year: number, month: number};
 
-  constructor(public fb: FormBuilder, public usuarioService: UsuarioService, public router: Router,private activatedRoute: ActivatedRoute, public location:Location) { }
+
+  constructor(private calendar: NgbCalendar, public fb: FormBuilder, public usuarioService: UsuarioService, public router: Router,private activatedRoute: ActivatedRoute, public location:Location) { }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -39,6 +43,8 @@ export class CitasComponent implements OnInit {
           km: ['',Validators.email],
         })
   }
+
+  
 
   cargarUsuario(id:string){
     this.usuarioService.getUsuarioId(id).subscribe((resp)=>{

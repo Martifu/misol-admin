@@ -20,6 +20,7 @@ import { ActualizarComponent } from './usuarios/actualizar/actualizar.component'
 import { UnidadesComponent } from './usuarios/unidades/unidades.component';
 import { NuevaComponent } from './usuarios/unidades/nueva/nueva.component';
 import { CitasComponent } from './citas/citas.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { CitasComponent } from './citas/citas.component';
     SharedModule,
     RouterModule, 
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ]
 })
 export class PagesModule { }
